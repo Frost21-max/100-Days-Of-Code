@@ -4,14 +4,24 @@ int main() {
     char s[1000];
     fgets(s, sizeof(s), stdin);
 
-    if (s[0] != ' ' && s[0] != '\n')
-        printf("%c", s[0]);
+    int printed = 0;
 
-    for (int i = 1; s[i] != '\0' && s[i] != '\n'; i++) {
-        if (s[i] == ' ' && s[i+1] != ' ' && s[i+1] != '\n')
-            printf("%c", s[i+1]);
+    // Print first initial if not space/newline
+    if (s[0] != ' ' && s[0] != '\n') {
+        printf("%c.", s[0]);
+        printed = 1;
     }
 
-    printf("\n");
+    // Print subsequent initials
+    for (int i = 1; s[i] != '\0'; i++) {
+        if (s[i] == ' ' && s[i+1] != ' ' && s[i+1] != '\n') {
+            printf("%c.", s[i+1]);
+            printed = 1;
+        }
+    }
+
+    if (printed)
+        printf("\n");
+
     return 0;
 }
